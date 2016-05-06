@@ -2,6 +2,7 @@ package org.otfried.cs109js
 
 import org.otfried.cs109.Color
 import org.otfried.cs109.DrawStyle
+import org.otfried.cs109.TextAlign
 import org.otfried.cs109.Canvas
 	
 import kotlin.browser.document
@@ -55,8 +56,9 @@ class JsCanvas(id: String) : Canvas {
     drawShape(s)
   }
 
-  override fun drawText(text: String, x: Double, y: Double) {
+  override fun drawText(text: String, x: Double, y: Double, align: TextAlign) {
     ctx.fillStyle = cols(color)
+    ctx.textAlign = align.toString().toLowerCase()
     ctx.fillText(text, x, y)
   }
 

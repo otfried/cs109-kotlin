@@ -26,6 +26,10 @@ enum class DrawStyle {
   STROKE, FILL, STROKE_AND_FILL
 }
 
+enum class TextAlign {
+  LEFT, CENTER, RIGHT
+}
+
 interface Canvas {
   val width: Int
   val height: Int
@@ -41,7 +45,8 @@ interface Canvas {
                     s: DrawStyle = DrawStyle.FILL)
   fun drawCircle(x: Double, y: Double, r: Double,
                  s: DrawStyle = DrawStyle.FILL)
-  fun drawText(text: String, x: Double, y: Double)
+  fun drawText(text: String, x: Double, y: Double, 
+               align: TextAlign = TextAlign.LEFT)
 
   fun textWidth(s: String): Double
 

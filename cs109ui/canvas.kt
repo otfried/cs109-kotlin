@@ -2,6 +2,7 @@ package org.otfried.cs109ui
 
 import org.otfried.cs109.Color
 import org.otfried.cs109.DrawStyle
+import org.otfried.cs109.TextAlign
 import org.otfried.cs109.Canvas
 
 import java.awt.image.BufferedImage
@@ -66,8 +67,16 @@ class ImageCanvas(val img: BufferedImage) : Canvas {
     draw(s, Ellipse2D.Double(x-r, y-r, 2*r, 2*r))
   }
   
-  override fun drawText(text: String, x: Double, y: Double) {
-    g.drawString(text, x.toFloat(), y.toFloat())
+  override fun drawText(text: String, x: Double, y: Double, align: TextAlign) {
+    var x0 = x.toFloat()
+    if (align != TextAlign.LEFT) {
+      val w = g.getFontMetrics().stringWidth(text)
+      if (align == TextAlign.RIGHT)
+        x0 -= w
+      else
+        x0 -= w/2f
+    }
+    g.drawString(text, x0, y.toFloat())
   }
   
   override fun textWidth(s: String): Double {
