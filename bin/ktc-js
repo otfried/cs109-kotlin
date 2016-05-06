@@ -1,0 +1,16 @@
+#!/bin/bash --posix
+
+# Based on findScalaHome() from scalac script
+findKotlinHome() {
+    local source="${BASH_SOURCE[0]}"
+    while [ -h "$source" ] ; do
+        local linked="$(readlink "$source")"
+        local dir="$(cd -P $(dirname "$source") && cd -P $(dirname "$linked") && pwd)"
+        source="$dir/$(basename "$linked")"
+    done
+    (cd -P "$(dirname "$source")/.." && pwd)
+}
+
+KOTLIN_HOME="$(findKotlinHome)"
+
+kotlinc-js -library-files "$KOTLIN_HOME/ext/cs109-jslib.jar" $@

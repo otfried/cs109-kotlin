@@ -1,0 +1,18 @@
+When I started programming, there were no graphical displays. 
+All computer input and output was done using text.
+
+A computer was shared by many users.  Each user was connected to the
+computer from a terminal (which is called this way because it is
+the endpoint of the connection from the computer to the user).
+
+The earliest terminals looked like a combination of a printer with a
+keyboard.  (When I was in middle school, I was sometimes allowed to
+play with a computer that used such a printing terminal.)
+
+The printers were later replaced by CRT displays that could typically
+display a matrix of 25x80 characters (the ASCII alphabet with letters,
+digits, and some special graphical characters).
+
+Users interacted with the computer by typing a command on the
+keyboard.  The computer responded by printing the output of the
+command on the terminal.
