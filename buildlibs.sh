@@ -7,7 +7,7 @@
 BASE=`pwd`
 BUILD=$BASE/build/kotlinc
 EXT=$BUILD/ext
-SRC=$BASE/android/app/src/main/kotlin
+SRC=$BASE/framework
 JSRC=$BASE/js/jslib
 UISRC=$BASE/cs109ui
 
