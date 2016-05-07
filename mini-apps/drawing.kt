@@ -59,7 +59,7 @@ fun draw(g: Canvas) {
   
 class Main(val ctx: Context) : MiniApp {
   init {
-    ctx.setTitle("Demo #2")
+    ctx.setTitle("Drawing demo")
     ctx.onTap { x, y -> ctx.toast("You are tickling me!") }
   }
 

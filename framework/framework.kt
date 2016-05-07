@@ -3,6 +3,9 @@ package org.otfried.cs109
 // --------------------------------------------------------------------
 
 interface Context {
+  val width: Int
+  val height: Int
+
   fun update()
 
   fun setTitle(s: String)
@@ -14,10 +17,14 @@ interface Context {
 
   fun onTap(f: (x: Double, y: Double) -> Unit)
   fun onDoubleTap(f: (x: Double, y: Double) -> Unit)
-  fun onPress(f: (x: Double, y: Double) -> Unit)
   fun onFling(f: (x: Double, y: Double, dir: Char, dist: Double) -> Unit)
 
+  fun onGravity(f: (x: Double, y: Double, z: Double) -> Unit)
+  fun onLight(f: (lux: Double) -> Unit)
+
   fun after(ms: Long, f: () -> Unit)
+
+  fun createMenu(items: List<Pair<String, () -> Unit>>)
 }
 
 interface MiniApp {

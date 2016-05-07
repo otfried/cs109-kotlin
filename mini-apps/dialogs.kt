@@ -1,5 +1,5 @@
 //
-// Drawing and toast
+// Different dialogs
 //
 
 import org.otfried.cs109.Context
@@ -12,7 +12,7 @@ import org.otfried.cs109.TextAlign
 
 class Main(val ctx: Context) : MiniApp {
   init {
-    ctx.setTitle("Demo #4")
+    ctx.setTitle("Dialog demo")
     ctx.onTap { x, y -> tapped(x, y) }
   }
 

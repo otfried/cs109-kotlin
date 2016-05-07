@@ -13,6 +13,10 @@ findKotlinHome() {
 
 KOTLIN_HOME="$(findKotlinHome)"
 
+FIRST=$1
+DEX=${FIRST%%.kt}.dex
+JAR=${FIRST%%.kt}.jar
+
 CP=""
 SEP=""
 CPFLAG=""
@@ -22,6 +26,6 @@ for f in $KOTLIN_HOME/ext/*.jar; do
   CPFLAG="-cp"
 done
 
-kotlinc $CPFLAG $CP -d app.jar $@
-java -jar $KOTLIN_HOME/dx/dx.jar --dex --output=app.dex app.jar
+kotlinc $CPFLAG $CP -d $JAR $@ && \
+  java -jar $KOTLIN_HOME/dx/dx.jar --dex --output=$DEX $JAR
 

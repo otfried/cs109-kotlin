@@ -1,5 +1,5 @@
 //
-// Drawing and toast
+// Light sensor test
 //
 
 import org.otfried.cs109.Context
@@ -11,24 +11,25 @@ import org.otfried.cs109.DrawStyle
 import org.otfried.cs109.TextAlign
 
 class Main(val ctx: Context) : MiniApp {
-  var y: Double = 0.0
+  var light = 0.0
 
   init {
-    ctx.setTitle("Demo #5")
-    ctx.onFling { x0, y0, dir, dist -> if (dir == 'u') y = 0.0 }
-    ctx.after(20) { animate() }
+    ctx.setTitle("Light sensor demo")
+    ctx.onLight { updateLight(it) }
   }
 
-  fun animate() {
-    y += 6.0
-    ctx.update()
-    ctx.after(20) { animate() }
+  fun updateLight(lx: Double) {
+    if (lx != light) {
+      light = lx
+      ctx.update()
+    }
   }
 
   override fun onDraw(canvas: Canvas) {
     val x = canvas.width / 2.0
     canvas.clear(Color(255, 255, 192))
     canvas.setColor(Color.BLUE)
-    canvas.drawCircle(x, y, 30.0)
+    canvas.setFont(48.0)
+    canvas.drawText("$light", x, 80.0, TextAlign.CENTER)
   }
 }

@@ -1,5 +1,5 @@
 //
-// Smallest possible mini-app for the CS109 Android framework
+// Tiny mini-app for the CS109 Android framework
 //
 
 import org.otfried.cs109.Color

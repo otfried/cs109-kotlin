@@ -1,5 +1,5 @@
 //
-// Drawing and toast
+// Tap, Double-tap, and Fling
 //
 
 import org.otfried.cs109.Context
@@ -17,10 +17,9 @@ class Main(val ctx: Context) : MiniApp {
   private var flingDir = 0.0
 
   init {
-    ctx.setTitle("Demo #3")
+    ctx.setTitle("Tap and fling demo")
     ctx.onTap { x, y -> tapped(x, y, 1) }
     ctx.onDoubleTap { x, y -> tapped(x, y, 2) }
-    ctx.onPress { x, y -> tapped(x, y, 3) }
     ctx.onFling { x, y, dir, d -> flinged(dir) }
   }
 
@@ -55,7 +54,7 @@ class Main(val ctx: Context) : MiniApp {
       3 -> "press"
       4 -> "fling"
       else -> ""
-      }, canvas.width / 2.0, 80.0, TextAlign.CENTER)
+      }, canvas.width / 2.0, 60.0 + 20.0 * lastT, TextAlign.CENTER)
     if (lastT != 4)
       canvas.drawCircle(lastX, lastY, 30.0)
     else {
