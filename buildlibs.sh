@@ -24,6 +24,9 @@ kotlinc-js -output jscanvas.js -meta-info $JSRC/jscanvas.kt $SRC/canvas.kt
 jar cf $EXT/cs109-jslib.jar jscanvas.js jscanvas.meta.js
 rm jscanvas.js jscanvas.meta.js
 
+echo "Building cs109-emulator.jar"
+kotlinc -d $EXT/cs109-emulator.jar -cp $EXT/cs109.jar:$EXT/cs109ui.jar $BASE/emulator/emulator.kt
+
 mkdir -p $BUILD/bin
 cp $BASE/bin/kt* $BUILD/bin
 

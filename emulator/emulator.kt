@@ -10,14 +10,14 @@ import org.otfried.cs109ui.ImageCanvas
 import java.awt.Dimension
 import java.awt.Color as JColor
 import java.awt.image.BufferedImage
-import java.awt.event.WindowEvent
 import java.awt.event.KeyEvent
-import java.awt.event.ComponentEvent
 import java.awt.event.MouseEvent
 import java.awt.event.ActionListener
-import javax.swing.JOptionPane as JOP
 
-import javax.swing.JMenuItem
+import javax.swing.JOptionPane as JOP
+import javax.swing.JSlider
+import javax.swing.SwingConstants
+import javax.swing.event.ChangeListener
 
 import java.net.URLClassLoader
 import java.net.URL
@@ -74,12 +74,39 @@ private class UI(override val width: Int, override val height: Int) : Context {
   val ui = javax.swing.JFrame()
   var miniAppMenu: List<Pair<String, () -> Unit>>? = null
 
+  val lightSlider = JSlider(SwingConstants.HORIZONTAL, 1, 1000, 20)
+  val lightFrame = javax.swing.JFrame()
+
+  val gravityXSlider = JSlider(SwingConstants.HORIZONTAL, -100, 100, 0)
+  val gravityYSlider = JSlider(SwingConstants.HORIZONTAL, -100, 100, 0)
+  val gravityFrame = javax.swing.JFrame()
+
   init {
    ui.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE)
    ui.setTitle("CS109 emulator")
    ui.setResizable(false)
    ui.add(canvas)
    ui.pack()
+   lightSlider.setPreferredSize(Dimension(400, 100))
+   lightSlider.addChangeListener( ChangeListener { lightChange() } )
+   lightFrame.setTitle("Light sensor")
+   lightFrame.add(lightSlider)
+   lightFrame.pack()
+   gravityXSlider.setPaintTicks(true)
+   gravityYSlider.setPaintTicks(true)
+   gravityXSlider.setMajorTickSpacing(100)
+   gravityYSlider.setMajorTickSpacing(100)
+   gravityXSlider.addChangeListener( ChangeListener { gravityChange() } )
+   gravityYSlider.addChangeListener( ChangeListener { gravityChange() } )
+   val gpanel = javax.swing.JPanel()
+   gpanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 10, 30, 10));
+   gpanel.setLayout(javax.swing.BoxLayout(gpanel, SwingConstants.VERTICAL))
+   gpanel.add(gravityXSlider)
+   gpanel.add(javax.swing.Box.createRigidArea(Dimension(0,30)))
+   gpanel.add(gravityYSlider)
+   gravityFrame.setTitle("Gravity sensor")
+   gravityFrame.add(gpanel)
+   gravityFrame.pack()
   }
 
   val toastTimer = javax.swing.Timer(2000, { clearToast() } )
@@ -119,9 +146,11 @@ private class UI(override val width: Int, override val height: Int) : Context {
   override fun onTap(f: (x: Double, y: Double) -> Unit) { 
     tapHandler = f
   }
+
   override fun onDoubleTap(f: (x: Double, y: Double) -> Unit) {
     doubleTapHandler = f
   }
+
   override fun onFling(f: (x: Double, y: Double, dir: Char, 
                            dist: Double) -> Unit) {
     flingHandler = f
@@ -129,12 +158,28 @@ private class UI(override val width: Int, override val height: Int) : Context {
 
   override fun onGravity(f: (x: Double, y: Double, z: Double) -> Unit) {
     gravityHandler = f
-    // resume()
+    gravityFrame.setVisible(true)
+    gravityChange()
+  }
+
+  fun gravityChange() {
+    val x = gravityXSlider.value / 10.0
+    val y = gravityYSlider.value / 10.0
+    val z = 1.0
+    val norm = Math.sqrt(x*x + y*y + z*z)
+    val g = 9.81
+    gravityHandler?.invoke(g*x/norm, g*y/norm, g*z/norm)
   }
 
   override fun onLight(f: (lux: Double) -> Unit) {
     lightHandler = f
-    // resume()
+    lightFrame.setVisible(true)
+    lightChange()
+  }
+
+  fun lightChange() {
+    val lux = lightSlider.value.toDouble()
+    lightHandler?.invoke(lux)
   }
 
   override fun after(ms: Long, f: () -> Unit) {

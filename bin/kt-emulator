@@ -1,0 +1,21 @@
+#!/bin/bash --posix
+
+# Based on findScalaHome() from scalac script
+findKotlinHome() {
+    local source="${BASH_SOURCE[0]}"
+    while [ -h "$source" ] ; do
+        local linked="$(readlink "$source")"
+        local dir="$(cd -P $(dirname "$source") && cd -P $(dirname "$linked") && pwd)"
+        source="$dir/$(basename "$linked")"
+    done
+    (cd -P "$(dirname "$source")/.." && pwd)
+}
+
+KOTLIN_HOME="$(findKotlinHome)"
+
+CP="$KOTLIN_HOME/lib/kotlin-runtime.jar"
+for f in $KOTLIN_HOME/ext/*.jar; do
+  CP="$CP:$f"
+done
+
+java -ea -cp "$CP" org.otfried.cs109emulator.EmulatorKt $@

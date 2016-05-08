@@ -35,9 +35,9 @@ class Main(val ctx: Context) : MiniApp {
   override fun onDraw(canvas: Canvas) {
     val x = canvas.width / 2.0
     val y = canvas.height / 2.0
-    canvas.translate(x, y)
     val w = (canvas.width + canvas.height).toDouble()
     canvas.clear(Color(255, 255, 192))
+    canvas.translate(x, y)
     canvas.setColor(Color.BLUE)
     canvas.setFont(48.0)
     val a = angle
