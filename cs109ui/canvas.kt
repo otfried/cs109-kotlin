@@ -9,15 +9,14 @@ import java.awt.image.BufferedImage
 import java.awt.Graphics2D
 import java.awt.Color as JColor
 import java.awt.BasicStroke
+import java.awt.AlphaComposite       
 import java.awt.geom.*
 	
 // --------------------------------------------------------------------
 
 class ImageCanvas(val img: BufferedImage) : Canvas {
-  private val ctx = mutableListOf(img.createGraphics())
-  val g: Graphics2D
-    get() = ctx.last()  // current one is the last one
-    
+  private val g = img.createGraphics()
+  private val ctm = mutableListOf<AffineTransform>()
   private var path: Path2D.Double? = null
 
   init {
@@ -31,6 +30,7 @@ class ImageCanvas(val img: BufferedImage) : Canvas {
     if (s != DrawStyle.FILL)
       g.draw(shape)
   }
+
   private fun toRadians(degrees: Double) = degrees / 180.0 * Math.PI
 
 
@@ -48,7 +48,10 @@ class ImageCanvas(val img: BufferedImage) : Canvas {
     g.setColor(JColor(c.r, c.g, c.b))
   }
   
-  override fun setAlpha(a: Int) = TODO()
+  override fun setAlpha(a: Int) {
+    g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 
+                   (a / 255f)))
+  }
   
   override fun setLineWidth(w: Double) {
     g.setStroke(BasicStroke(w.toFloat()))
@@ -94,17 +97,15 @@ class ImageCanvas(val img: BufferedImage) : Canvas {
   override fun scale(sx: Double, sy: Double) { g.scale(sx, sy) }
 
   override fun save() {
-    ctx.add(g.create() as Graphics2D)
+    ctm.add(g.transform)
   }
   override fun restore() {
-    g.dispose()
-    ctx.removeAt(ctx.lastIndex)
+    if (ctm.isEmpty())
+      throw IllegalArgumentException("Restore without save")
+    g.transform = ctm.removeAt(ctm.lastIndex)
   }
 
-  fun done() {
-    for (i in ctx.lastIndex downTo 0)
-      ctx[i].dispose()
-  }
+  fun done() { g.dispose() }
 }
 
 // --------------------------------------------------------------------
