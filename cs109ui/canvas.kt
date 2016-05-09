@@ -16,7 +16,7 @@ import java.awt.geom.*
 
 class ImageCanvas(val img: BufferedImage) : Canvas {
   private val g = img.createGraphics()
-  private val ctm = mutableListOf<AffineTransform>()
+  private val ctm = mutableListOf<AffineTransform>(g.transform)
   private var path: Path2D.Double? = null
 
   init {
@@ -40,8 +40,11 @@ class ImageCanvas(val img: BufferedImage) : Canvas {
     get() = img.height
 
   override fun clear(c: Color) {
+    val tfm = g.transform
     g.setColor(JColor(c.r, c.g, c.b))
+    g.transform = ctm.first()
     g.fillRect(0, 0, width, height)
+    g.transform = tfm
   }
 
   override fun setColor(c: Color) {
@@ -100,7 +103,7 @@ class ImageCanvas(val img: BufferedImage) : Canvas {
     ctm.add(g.transform)
   }
   override fun restore() {
-    if (ctm.isEmpty())
+    if (ctm.size == 1)
       throw IllegalArgumentException("Restore without save")
     g.transform = ctm.removeAt(ctm.lastIndex)
   }
