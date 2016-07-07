@@ -1,7 +1,7 @@
-# Kotlin tutorial
+# CS109 Kotlin tutorial
 
 This repository contains example code for my Kotlin tutorial at
-http://otfried.org/courses/kotlin/tutorial.html.
+http://otfried.org/courses/cs109/tutorial.html.
 
 Also included are:
 
@@ -12,7 +12,7 @@ Also included are:
   graphical user interface without learning about Swing or event-based
   programming.
 
-  See http://otfried.org/courses/kotlin/tutorial_cs109ui.html for
+  See http://otfried.org/courses/cs109/tutorial_cs109ui.html for
   documentation.
 
 * A framework to allow students to develop simple Android apps (called
