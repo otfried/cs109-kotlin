@@ -12,7 +12,7 @@ Also included are:
   graphical user interface without learning about Swing or event-based
   programming.
 
-  See http://otfried.org/courses/cs109/tutorial_cs109ui.html for
+  See http://otfried.org/courses/cs109/tutorial-cs109ui.html for
   documentation.
 
 * A framework to allow students to develop simple Android apps (called
