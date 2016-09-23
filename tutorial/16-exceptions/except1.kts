@@ -1,8 +1,4 @@
-fun readString(prompt: String): String {
-  print(prompt)
-  System.out.flush()
-  return readLine() ?: ""
-}
+import org.otfried.cs109.readString
 
 fun f(n: Int) {
   println("Starting f($n) ... ")

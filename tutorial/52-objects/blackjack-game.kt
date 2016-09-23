@@ -1,10 +1,4 @@
-
-fun readString(prompt: String?): String {
-  if (prompt != null)
-    print(prompt)
-  System.out.flush()
-  return readLine() ?: ""
-}
+import org.otfried.cs109.readString
 
 // Compute the value of a hand of cards.
 fun handValue(hand: List<Card>): Int {

@@ -1,12 +1,8 @@
+import org.otfried.cs109.readString
+
 var secret = 0
 
 val random = java.util.Random()
-
-fun readString(prompt: String): String {
-  print(prompt)
-  System.out.flush()
-  return readLine() ?: ""
-}
 
 fun answerGuess(guess: Int) {
   if (guess == secret)
