@@ -13,10 +13,10 @@ fun draw(image: BufferedImage, color: Color) {
   g.done()
 }
 
-fun showSleep(image: BufferedImage, color: Color, ms: Long) {
-  draw(image, color)       // draw rectangle
+fun showWait(image: BufferedImage, color: Color, ms: Int) {
+  draw(image, color)  // draw rectangle
   show(image)
-  Thread.sleep(ms)          // wait ms milliseconds
+  waitForMs(ms)       // wait ms milliseconds
 }
 
 fun main(args: Array<String>) {
@@ -24,11 +24,11 @@ fun main(args: Array<String>) {
 
   val image = BufferedImage(500, 500, BufferedImage.TYPE_INT_RGB)
 
-  showSleep(image, Color.WHITE, 500L) // 0.5 sec white picture
-  showSleep(image, Color.RED, 1000L)  // 1 sec red rectangle
-  showSleep(image, Color.WHITE, 500L) // 0.5 sec white picture
-  showSleep(image, Color.BLUE, 1000L) // 1 sec blue rectangle
-  showSleep(image, Color.WHITE, 5000L) // 5 secs white picture  
+  showWait(image, Color.WHITE, 500)  // 0.5 sec white picture
+  showWait(image, Color.RED, 1000)   // 1 sec red rectangle
+  showWait(image, Color.WHITE, 500)  // 0.5 sec white picture
+  showWait(image, Color.BLUE, 1000)  // 1 sec blue rectangle
+  showWait(image, Color.WHITE, 5000) // 5 secs white picture  
   
   close() // close window and terminate program
 }
