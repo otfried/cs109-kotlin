@@ -32,7 +32,7 @@ private fun onEDTWait(op: () -> Unit) {
 }
 
 private fun sendEvent(r: Result) {
-  with(UI) {
+  with (UI) {
     timer.stop()   // key or mouse event cancels timeout
     lock.withLock {
       queue.add(r)
@@ -49,6 +49,8 @@ private class JCanvas: javax.swing.JComponent() {
   init {
     setPreferredSize(Dimension(480, 320))
     setFocusable(true)
+    setOpaque(true)
+    setDoubleBuffered(false)
 
     addKeyListener(object: java.awt.event.KeyAdapter() {
       override fun keyPressed(e: KeyEvent) {
@@ -77,7 +79,6 @@ private class JCanvas: javax.swing.JComponent() {
       image = BufferedImage(im.width, im.height, BufferedImage.TYPE_INT_RGB)
     image!!.setData(im.getData())
     setPreferredSize(Dimension(im.width, im.height))
-    repaint()
   }
 }
 
@@ -125,8 +126,9 @@ fun show(image: BufferedImage) {
     UI.canvas.setImage(image)
     val insets = UI.ui.insets
     UI.ui.setSize(Dimension(image.width + insets.left + insets.right, 
-		            image.height + insets.top + insets.bottom))
+                            image.height + insets.top + insets.bottom))
     UI.ui.setVisible(true)
+    UI.canvas.repaint()
   }
 }
 
@@ -164,6 +166,15 @@ fun waitMouse(): Pair<Int, Int> {
       is Mouse -> return Pair(r.x, r.y)
       is TimeOut -> return Pair(-1, -1)
     }
+  }
+}
+
+fun waitForMs(ms: Int) {
+  setTimeOut(ms)
+  while (true) {
+    val r = waitEvent()
+    if (r is TimeOut)
+      return
   }
 }
 

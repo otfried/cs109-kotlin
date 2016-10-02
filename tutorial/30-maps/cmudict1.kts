@@ -15,11 +15,10 @@ fun readPronounciations(): Map<String,String> {
 }
 
 fun reverseMap(m: Map<String, String>): Map<String,Set<String>> {
-  var r = mutableMapOf<String,MutableSet<String>>()
+  var r = mutableMapOf<String, Set<String>>()
   for ((word, pro) in m) {
-    val s = r.getOrElse(pro) { mutableSetOf<String>() }
-    s.add(word)
-    r[pro] = s
+    val s = r.getOrElse(pro) { emptySet<String>() }
+    r[pro] = s + word
   }
   return r
 }
