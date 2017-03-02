@@ -22,7 +22,7 @@ fun printHistogram(h: Map<String, Int>) {
 }
 
 if (args.size != 1) {
-  println("Usage: kotlinc -script histogram1.kts <file name>")
+  println("Usage: kts histogram3.kts <file name>")
   kotlin.system.exitProcess(1)
 }
   

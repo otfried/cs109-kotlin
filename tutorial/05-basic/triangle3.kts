@@ -10,5 +10,5 @@ if (args.size == 1) {
   val size = args[0].toInt()
   triangle(size)
 } else
-  println("Usage: kotlinc -script triangle3.kts <size>")
+  println("Usage: kts triangle3.kts <size>")
 
