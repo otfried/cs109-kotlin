@@ -21,4 +21,4 @@ for f in $KOTLIN_HOME/ext/*.jar; do
   CP="$CP:$f"
 done
 
-java -cp "$CP" org.junit.runner.JUnitCore $@
+java -cp "$CP" org.junit.runner.JUnitCore "$@"

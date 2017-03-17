@@ -24,4 +24,4 @@ for f in $KOTLIN_HOME/ext/*.jar; do
   SEP=":"  
 done
 
-kotlinc $CP -script $@
+kotlinc $CP -script "$@"

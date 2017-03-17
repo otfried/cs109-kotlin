@@ -18,4 +18,4 @@ for f in $KOTLIN_HOME/ext/*.jar; do
   CP="$CP:$f"
 done
 
-java -ea -cp "$CP" org.otfried.cs109emulator.EmulatorKt $@
+java -ea -cp "$CP" org.otfried.cs109emulator.EmulatorKt "$@"

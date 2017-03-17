@@ -21,4 +21,4 @@ for f in $KOTLIN_HOME/ext/*.jar; do
   CP="$CP:$f"
 done
 
-java -ea -cp "$CP" $@
+java -ea -cp "$CP" "$@"
