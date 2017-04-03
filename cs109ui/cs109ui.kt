@@ -102,7 +102,7 @@ private class Frame(canvas: JCanvas): java.awt.Frame() {
 
 private object UI {
   init {
-    // println("CS109 UI version 2016/04/13")
+    println("CS109 UI version 2017/04/03")
   }
   
   val canvas = JCanvas()
@@ -170,12 +170,7 @@ fun waitMouse(): Pair<Int, Int> {
 }
 
 fun waitForMs(ms: Int) {
-  setTimeOut(ms)
-  while (true) {
-    val r = waitEvent()
-    if (r is TimeOut)
-      return
-  }
+  Thread.sleep(ms.toLong())
 }
 
 fun close() {

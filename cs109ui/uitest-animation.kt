@@ -25,6 +25,6 @@ fun main(args: Array<String>) {
     x += 2
     y += 1
     show(image)
-    waitForMs(10)
+    Thread.sleep(10)
   }
 }
