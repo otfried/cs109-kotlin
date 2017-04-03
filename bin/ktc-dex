@@ -26,6 +26,6 @@ for f in $KOTLIN_HOME/ext/*.jar; do
   CPFLAG="-cp"
 done
 
-kotlinc $CPFLAG $CP -d $JAR $@ && \
+kotlinc $CPFLAG $CP -d $JAR "$@" && \
   java -jar $KOTLIN_HOME/dx/dx.jar --dex --output=$DEX $JAR
 

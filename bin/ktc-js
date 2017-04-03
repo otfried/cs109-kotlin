@@ -13,4 +13,4 @@ findKotlinHome() {
 
 KOTLIN_HOME="$(findKotlinHome)"
 
-kotlinc-js -library-files "$KOTLIN_HOME/ext/cs109-jslib.jar" $@
+kotlinc-js -library-files "$KOTLIN_HOME/ext/cs109-jslib.jar" "$@"

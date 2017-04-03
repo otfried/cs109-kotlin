@@ -21,4 +21,4 @@ for f in $KOTLIN_HOME/ext/*.jar; do
   CP="$CP:$f"
 done
 
-kotlinc -cp "$CP" -d classes $@
+kotlinc -cp "$CP" -d classes "$@"
