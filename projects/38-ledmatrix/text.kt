@@ -33,19 +33,16 @@ fun setup() {
 
 // loop() is called in regular intervals to compute the next frame
 // of the animation.
-// The argument image is a bitmap of size 32 x 16.
+// The argument leds is a bitmap of size 32 x 16.
 // loop() needs to draw the next frame of the animation on this bitmap.
 // Black means LED off, anything else means LED on.
+// The bitmap is already cleared to black before loop() is called.
 // If loop() returns true, then the animation ends.
 
-fun loop(image: BufferedImage): Boolean {
-  // You can draw on image any way you like.
-  // You can use "setRGB" to set pixels directly,
-  // or you could use an ImageCanvas like this:
-  val g = ImageCanvas(image)
+fun loop(leds: BufferedImage): Boolean {
+  val g = ImageCanvas(leds)
   g.setFont(16.0, "SansSerif")
   val wid = g.textWidth(message)
-  g.clear(Color.BLACK)
   g.setColor(Color.RED)
   g.drawText(message, x.toDouble(), 14.0)
   g.done()

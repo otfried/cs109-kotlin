@@ -38,14 +38,11 @@ fun setup() {
 // If loop() returns true, then the animation ends.
 
 fun loop(leds: BufferedImage): Boolean {
-  val g = ImageCanvas(leds)
-  g.setColor(Color.RED)
-  // do some drawing
-  g.done()
-
-  // after drawing the current image, update global variables
-
-  // indicate whether the animation is finished
+  // now set a few LEDs
+  leds.setRGB(1, 1, 1)
+  leds.setRGB(2, 2, 1)
+  for (x in 2..30)
+    leds.setRGB(x, 8, 1)
   return false
 }
 

@@ -26,6 +26,10 @@ fun showLeds(leds: BufferedImage, image: BufferedImage, cell: Int) {
 fun performTick(leds: BufferedImage, image: BufferedImage,
                 cell: Int, speed: Int): Boolean {
   val t0 = currentTimeMillis()
+  // clear display    
+  for (x in 0 until 32)
+    for (y in 0 until 16)
+      leds.setRGB(x, y, 0)
   val finished = loop(leds)
   showLeds(leds, image, cell)
   while (true) {
