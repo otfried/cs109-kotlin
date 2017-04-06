@@ -9,7 +9,7 @@ import org.otfried.cs109.TextAlign
 // Original graphic by Jeong-eun Yu and Geum-hyeon Song
 
 val speed = 60L
-val magnify = 2.0 // to enlarge animation on hires screen
+val magnify = 1.0 // to enlarge animation on hires screen
 
 // --------------------------------------------------------------------
 
