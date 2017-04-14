@@ -43,7 +43,7 @@ fun performTick(leds: BufferedImage, image: BufferedImage,
 
 fun main(args: Array<String>) {
   var cell = 32
-  var speed = 300
+  var speed = designSpeed
   try {
     if (args.size in setOf(1, 2))
       cell = args[0].toInt()
