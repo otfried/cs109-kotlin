@@ -1,13 +1,10 @@
-
 val n = args[0].toInt()
 val sqrtn = Math.sqrt(n.toDouble()).toInt()
 
 var s = (2 .. n).toList()
 
-while (true) {
+while (s.first() <= sqrtn) {
   val k = s.first()
-  if (k > sqrtn)
-     break
   print("$k ")
   s = s.filter { it % k != 0 }
 }
