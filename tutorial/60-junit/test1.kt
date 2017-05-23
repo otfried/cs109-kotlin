@@ -1,7 +1,7 @@
 import org.junit.Assert.*
 import org.junit.Test
 
-public class AdditionTest {
+class AdditionTest {
 
   @Test
   fun onePlusOne() {
