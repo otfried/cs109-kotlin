@@ -1,0 +1,21 @@
+In this course we will use the Kotlin programming language.
+
+In my experience, students develop a style of programming in their
+first programming language. They find it difficult to learn a
+different style later, even if they switch to a different
+language. This means that students should start early to use a modern
+language that encourages writing clean and elegant code, and supports
+a good object-oriented and functional style.
+
+We will therefore use Kotlin in this course. Kotlin is fully
+compatible with Java, so you can use it for anything that can be done
+in Java, but it is a much more modern, much more readable, and much
+more sensible language. We will also experiment with compiling Kotlin
+source to Javascript, so you can run your programs inside a web
+browser, and will even write small apps that can run on Android
+phones.
+
+Most students will still have to learn C++ and/or Java later during
+their studies—but I believe that after getting programming practice in
+Kotlin, they will be able to write better code in those languages as
+well.
