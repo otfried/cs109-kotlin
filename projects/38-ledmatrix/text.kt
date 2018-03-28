@@ -13,11 +13,6 @@ import java.awt.image.BufferedImage
 
 val authors = listOf(20169999, 20168888)
 
-// Put the speed at which your animation is designed to be enjoyed
-// (in milliseconds)
-
-val designSpeed = 100
-
 // --------------------------------------------------------------------
 
 // global variables to control the animation
@@ -36,15 +31,14 @@ fun setup() {
 
 // --------------------------------------------------------------------
 
-// loop() is called in regular intervals to compute the next frame
-// of the animation.
+// loop() is called  to compute the next frame of the animation.
 // The argument leds is a bitmap of size 32 x 16.
 // loop() needs to draw the next frame of the animation on this bitmap.
 // Black means LED off, anything else means LED on.
 // The bitmap is already cleared to black before loop() is called.
-// If loop() returns true, then the animation ends.
+// If loop() returns 0, then the animation ends.
 
-fun loop(leds: BufferedImage): Boolean {
+fun loop(leds: BufferedImage): Int {
   val g = ImageCanvas(leds)
   g.setFont(16.0, "SansSerif")
   val wid = g.textWidth(message)
@@ -55,8 +49,9 @@ fun loop(leds: BufferedImage): Boolean {
   // after drawing the current image, update global variables
   x -= 1
 
-  // indicate whether the animation is finished
-  return (x < -wid)
+  // return 0 when the animation is finished,
+  // otherwise return time between frames in milliseconds
+  return if (x < -wid) 0 else 100
 }
 
 // --------------------------------------------------------------------

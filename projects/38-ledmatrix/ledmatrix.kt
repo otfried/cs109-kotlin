@@ -30,20 +30,23 @@ fun performTick(leds: BufferedImage, image: BufferedImage,
   for (x in 0 until 32)
     for (y in 0 until 16)
       leds.setRGB(x, y, 0)
-  val finished = loop(leds)
+  val speed1 = loop(leds)
   showLeds(leds, image, cell)
+  if (speed1 <= 0)
+    return true
+  val wait = if (speed < 0) speed1 else speed
   while (true) {
     val t1 = currentTimeMillis()
-    val rest = speed - (t1 - t0)
+    val rest = wait - (t1 - t0)
     if (rest <= 5)
-      return finished
+      return false
     Thread.sleep(rest)
   }
 }
 
 fun main(args: Array<String>) {
   var cell = 32
-  var speed = designSpeed
+  var speed = -1
   try {
     if (args.size in setOf(1, 2))
       cell = args[0].toInt()

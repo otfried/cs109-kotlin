@@ -34,15 +34,14 @@ fun setup() {
 
 // --------------------------------------------------------------------
 
-// loop() is called in regular intervals to compute the next frame
-// of the animation.
+// loop() is called  to compute the next frame of the animation.
 // The argument leds is a bitmap of size 32 x 16.
 // loop() needs to draw the next frame of the animation on this bitmap.
 // Black means LED off, anything else means LED on.
 // The bitmap is already cleared to black before loop() is called.
-// If loop() returns true, then the animation ends.
+// If loop() returns 0, then the animation ends.
 
-fun loop(leds: BufferedImage): Boolean {
+fun loop(leds: BufferedImage): Int {
   val g = ImageCanvas(leds)
   g.setColor(Color.RED)
   // do some drawing
@@ -50,8 +49,9 @@ fun loop(leds: BufferedImage): Boolean {
 
   // after drawing the current image, update global variables
 
-  // indicate whether the animation is finished
-  return false
+  // return 0 when the animation is finished,
+  // otherwise return time between frames in milliseconds
+  return 100
 }
 
 // --------------------------------------------------------------------
