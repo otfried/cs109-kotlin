@@ -13,11 +13,6 @@ import java.awt.image.BufferedImage
 
 val authors = listOf(20169999, 20168888)
 
-// Put the speed at which your animation is designed to be enjoyed
-// (in milliseconds)
-
-val designSpeed = 100
-
 // --------------------------------------------------------------------
 
 // global variables to control the animation
