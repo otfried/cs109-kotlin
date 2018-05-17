@@ -14,7 +14,7 @@ class Main(val ctx: Context) : MiniApp {
   private var lastY = 0.0
 
   init {
-    ctx.setTitle("Tap and fling demo")
+    ctx.setTitle("Tap demo")
     ctx.onTap { x, y -> tapped(x, y) }
   }
 
